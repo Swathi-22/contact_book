@@ -1,0 +1,82 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+<div class="container-fluid page-body-wrapper">
+  <!-- partial:../../partials/_sidebar.html -->
+  <nav class="sidebar sidebar-offcanvas" id="sidebar">
+    <ul class="nav">
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'web:contact_list' %}">
+          <i class="icon-grid menu-icon"></i>
+          <span class="menu-title">Contact List</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'web:contact_create' %}">
+          <i class="icon-grid menu-icon"></i>
+          <span class="menu-title">Add Contact</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <!-- partial -->
+  <div class="main-panel">
+    <div class="content-wrapper">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Contact List</h4>
+          <div class="row">
+            <div class="col-12">
+              <div class="table-responsive">
+                <table id="order-listing" class="table">
+                  <thead>
+                    <tr>
+                      <th>No</th>
+                      <th>Id</th>
+                      <th>Name</th>
+                      <th>Phone</th>
+                      <th>View</th>
+                      <th>Edit</th>
+                      <th>Delete</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for contact in contacts %}
+                    <tr>
+                      <td>{{ forloop.counter }}</td>
+                      <td>{{ contact.id }}</td>
+                      <td>{{ contact.name }}</td>
+                      <td>{{ contact.phone_number }}</td>
+                      <!-- <td>
+                        <label class="badge badge-info">On hold</label>
+                      </td> -->
+                      <td>
+                        <a href="{% url 'web:contact_detail' pk=contact.pk %}">
+                          <i class="fa-solid fa-eye"></i>
+                        </a>
+                      </td>
+                      <td>
+                        <a href="{% url 'web:contact_update' pk=contact.pk %}" class="edit-icon">
+                          <i class="fa-solid fa-pen-to-square"></i>
+                        </a>
+                      </td>
+                      <td>
+                        <a href="{% url 'web:contact_delete' pk=contact.pk %}" class="delete-icon">
+                          <i class="fa-solid fa-trash"></i>
+                        </a>
+                      </td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- content-wrapper ends -->
+  </div>
+  <!-- main-panel ends -->
+</div>
+
+{% endblock %}

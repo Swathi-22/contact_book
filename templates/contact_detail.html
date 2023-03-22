@@ -1,0 +1,48 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+<div class="container-fluid page-body-wrapper">
+  <!-- partial:../../partials/_sidebar.html -->
+  <nav class="sidebar sidebar-offcanvas" id="sidebar">
+    <ul class="nav">
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'web:contact_list' %}">
+          <i class="icon-grid menu-icon"></i>
+          <span class="menu-title">Contact List</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'web:contact_create' %}">
+          <i class="icon-grid menu-icon"></i>
+          <span class="menu-title">Add Contact</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <!-- partial -->
+  <div class="main-panel">
+    <div class="content-wrapper">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Contact Detail</h4>
+          <div class="row">
+            <div class="col-2">Name :</div>
+            <div class="col-10">{{ contact.name }}</div>
+            <div class="col-2">Phone :</div>
+            <div class="col-10">{{ contact.phone_number }}</div>
+          </div>
+          <div class="row" style="padding-top: 25px">
+            <div class="col-3">
+              <a href="{% url 'web:contact_list' %}" class="button-button"
+                >Back to contact list</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- content-wrapper ends -->
+  </div>
+  <!-- main-panel ends -->
+</div>
+
+{% endblock %}
